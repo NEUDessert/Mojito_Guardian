@@ -4,6 +4,7 @@ import LoginScene from './Scenes/LoginScene';
 import AuthScene from './Scenes/AuthScene';
 import PersonalInfo from './Scenes/PersonalInfo';
 import SharedPreferences from 'react-native-shared-preferences';
+import JPushModule from 'jpush-react-native';
 
 const scenes = {
     LoginScene: LoginScene,
@@ -18,6 +19,7 @@ class MojitoGuardian extends Component {
             leftButton: 'Back',
             initRoute: 'LoginScene'
         };
+
     }
     render() {
         return (
