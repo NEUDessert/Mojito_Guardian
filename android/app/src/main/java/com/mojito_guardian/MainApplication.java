@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;
+import cn.jpush.reactnativejpush.*;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -26,7 +27,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-          new RNSharedPreferencesReactPackage()
+          new RNSharedPreferencesReactPackage(),
+          new JPushPackage(true, true)
       );
     }
   };
