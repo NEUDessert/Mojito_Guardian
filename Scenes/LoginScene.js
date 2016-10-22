@@ -7,18 +7,17 @@ import Button from 'react-native-button';
 import SharedPreferences from 'react-native-shared-preferences'
 
 export default class LoginScene extends Component {
-
-    render() {
+    constructor(props) {
+        super(props);
         SharedPreferences.getItem('protectCode', (value) => {
             if(value) {
                 this.props.navigator.push({
                     title: 'AuthScene'
                 });
-                return (
-                    <View>Nothing.</View>
-                );
             }
         });
+    }
+    render() {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20}}>请输入监护代码：</Text>

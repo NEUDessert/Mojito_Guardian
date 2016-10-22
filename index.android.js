@@ -17,7 +17,6 @@ class MojitoGuardian extends Component {
         };
     }
     render() {
-        //SharedPreferences.setItem('protectCode', '123');
         return (
             <Navigator
                 initialRoute={{title: this.state.initRoute}}
