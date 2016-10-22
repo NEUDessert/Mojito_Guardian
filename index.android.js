@@ -2,10 +2,13 @@ import React, {Component} from 'react';
 import {AppRegistry, Navigator, Text} from 'react-native';
 import LoginScene from './Scenes/LoginScene';
 import AuthScene from './Scenes/AuthScene';
-import SharedPreferences from 'react-native-shared-preferences'
+import PersonalInfo from './Scenes/PersonalInfo';
+import SharedPreferences from 'react-native-shared-preferences';
+
 const scenes = {
     LoginScene: LoginScene,
-    AuthScene: AuthScene
+    AuthScene: AuthScene,
+    PersonalInfo: PersonalInfo
 };
 
 class MojitoGuardian extends Component {

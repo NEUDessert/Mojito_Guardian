@@ -21,7 +21,7 @@ export default class LoginScene extends Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20}}>请输入监护代码：</Text>
-                <TextInput editable={true} placeholder={'123'}/>
+                <TextInput editable={true} placeholder={'受监护人的11位监护代码'}/>
                 <Button
                     style={{fontSize: 20, color: '#999999'}}
                     styleDisabled={{color: 'red'}}

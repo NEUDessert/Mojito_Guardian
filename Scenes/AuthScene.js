@@ -10,13 +10,13 @@ export default class AuthScene extends Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20}}>请输入您的手机号：</Text>
-                <TextInput editable={true} placeholder={''}/>
+                <TextInput editable={true} placeholder={'受监护人指定的应急联系人手机号'}/>
                 <Button
                     style={{fontSize: 20, color: '#999999'}}
                     styleDisabled={{color: 'red'}}
                     onPress={() => {
                         this.props.navigator.push({
-                            title: 'LoginScene'
+                            title: 'PersonalInfo'
                         });
                     }
                     }>
