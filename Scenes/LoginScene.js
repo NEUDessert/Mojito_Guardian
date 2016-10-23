@@ -4,7 +4,8 @@
 import React, {Component} from 'react';
 import {View, Text, TextInput, StyleSheet} from 'react-native';
 import Button from 'react-native-button';
-import SharedPreferences from 'react-native-shared-preferences'
+import SharedPreferences from 'react-native-shared-preferences';
+import JPushModule from 'jpush-react-native';
 
 export default class LoginScene extends Component {
     constructor(props) {
@@ -17,12 +18,11 @@ export default class LoginScene extends Component {
         SharedPreferences.getItem('protectCode', (value) => {
             if(value) {
                 this.props.navigator.push({
-                    title: 'AuthScene'
+                    title: 'PersonalInfo'
                 });
             }
         });
     }
-
     submitData() {
         let data = {
             custodyCode: this.state.protectCode,
@@ -34,6 +34,13 @@ export default class LoginScene extends Component {
             .then((response) => response.json())
             .then((responseJson) => {
                 if(responseJson.error == 0) {
+                    SharedPreferences.setItem('protectCode', this.state.protectCode);
+                    SharedPreferences.setItem('phoneNumber', this.state.phoneNumber);
+                    JPushModule.setAlias(this.state.phoneNumber, () => {
+                        console.log("Set alias succeed");
+                    }, () => {
+                        console.log("Set alias failed");
+                    });
                     this.props.navigator.push({
                         title: 'PersonalInfo'
                     });
@@ -50,7 +57,9 @@ export default class LoginScene extends Component {
                 })
             })
     }
-
+    componentDidMount() {
+        JPushModule.initPush();
+    }
     render() {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>

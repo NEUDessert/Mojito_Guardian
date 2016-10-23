@@ -16,7 +16,7 @@ import in.sriraman.sharedpreferences.RNSharedPreferencesReactPackage;
 import cn.jpush.reactnativejpush.JPushPackage;
 
 public class MainApplication extends Application implements ReactApplication {
-  private boolean SHUTDOWN_TOAST = false;
+  private boolean SHUTDOWN_TOAST = true;
   private boolean SHUTDOWN_LOG = false;
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
