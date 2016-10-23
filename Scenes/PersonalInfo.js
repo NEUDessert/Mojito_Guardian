@@ -9,10 +9,6 @@ export default class PersonalInfo extends Component {
     constructor(props) {
         super(props);
 
-        JPushModule.initPush();
-        JPushModule.resumePush();
-
-
     }
     componentDidMount() {
         JPushModule.addReceiveCustomMsgListener((message) => {
@@ -24,10 +20,10 @@ export default class PersonalInfo extends Component {
             // var extra = JSON.parse(map.extras);
             // console.log(extra.key + ": " + extra.value);
         });
-        JPushModule.addReceiveOpenNotificationListener((map) => {
-            console.log("Opening notification!");
-            this.props.navigator.push({name: "pushActivity"});
-        })
+        //JPushModule.addReceiveOpenNotificationListener((map) => {
+        //    console.log("Opening notification!");
+        //    this.props.navigator.push({name: "pushActivity"});
+        //})
     }
 
     componentWillUnmount() {
@@ -36,6 +32,17 @@ export default class PersonalInfo extends Component {
     }
 
     render() {
+        JPushModule.initPush();
+        //JPushModule.setTags(["VIP", "NOTVIP"], () => {
+        //    console.log("Set tag succeed");
+        //}, () => {
+        //    console.log("Set tag failed");
+        //});
+        JPushModule.setAlias('qwerty', () => {
+            console.log("Set alias succeed");
+        }, () => {
+            console.log("Set alias failed");
+        });
         return (
             <View><Text>Nothing.</Text></View>
         )

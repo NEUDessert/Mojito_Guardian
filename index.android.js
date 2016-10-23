@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
 import {AppRegistry, Navigator, Text} from 'react-native';
 import LoginScene from './Scenes/LoginScene';
-import AuthScene from './Scenes/AuthScene';
 import PersonalInfo from './Scenes/PersonalInfo';
 import SharedPreferences from 'react-native-shared-preferences';
 import JPushModule from 'jpush-react-native';
 
 const scenes = {
     LoginScene: LoginScene,
-    AuthScene: AuthScene,
     PersonalInfo: PersonalInfo
 };
 
@@ -30,19 +28,6 @@ class MojitoGuardian extends Component {
                     let Component = scenes[route.title];
                     return <Component navigator={navigator} />
                 }}
-                navigationBar={
-                    <Navigator.NavigationBar
-                        routeMapper={{
-                            LeftButton: (route, navigator, index, navState) =>
-                            { return (<Text style={{fontSize: 20}} onPress={() => navigator.pop()}>{this.state.leftButton}</Text>) },
-                            RightButton: (route, navigator, index, navState) =>
-                            { },
-                            Title: (route, navigator, index, navState) =>
-                            { },
-                        }}
-                        //style={}
-                    />
-                }
             />
 
         );

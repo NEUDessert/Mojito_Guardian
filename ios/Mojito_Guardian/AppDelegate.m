@@ -8,6 +8,10 @@
  */
 
 #import "AppDelegate.h"
+#import <RCTJPushModule.h>
+#ifdef NSFoundationVersionNumber_iOS_9_x_Max
+#import <UserNotifications/UserNotifications.h>
+#endif
 
 #import "RCTBundleURLProvider.h"
 #import "RCTRootView.h"
@@ -16,6 +20,27 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    if ([[UIDevice currentDevice].systemVersion floatValue] >= 10.0) {
+ #ifdef NSFoundationVersionNumber_iOS_9_x_Max
+    JPUSHRegisterEntity * entity = [[JPUSHRegisterEntity alloc] init];
+     entity.types = UNAuthorizationOptionAlert|UNAuthorizationOptionBadge|UNAuthorizationOptionSound;
+     [JPUSHService registerForRemoteNotificationConfig:entity delegate:self];
+ 
+#endif
+} else if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
+    [JPUSHService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge |
+                                                      UIUserNotificationTypeSound |
+                                                      UIUserNotificationTypeAlert)
+                                          categories:nil];
+  } else {
+    [JPUSHService registerForRemoteNotificationTypes:(UIRemoteNotificationTypeBadge |
+                                                      UIRemoteNotificationTypeSound |
+                                                      UIRemoteNotificationTypeAlert)
+                                          categories:nil];
+  }
+  
+  [JPUSHService setupWithOption:launchOptions appKey:@"20e3f96fb964caba1c5ab2cd"
+                        channel:nil apsForProduction:nil];
   NSURL *jsCodeLocation;
 
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index.ios" fallbackResource:nil];
@@ -34,4 +59,8 @@
   return YES;
 }
 
+- (void)application:(UIApplication *)application
+didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+[JPUSHService registerDeviceToken:deviceToken];
+}
 @end
