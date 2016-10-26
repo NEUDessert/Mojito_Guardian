@@ -64,13 +64,13 @@ export default class LoginScene extends Component {
         return (
             <View style={{flex: 1, flexDirection: 'column', justifyContent: 'center'}}>
                 <Text style={{fontSize: 20}}>请输入监护代码：</Text>
-                <TextInput editable={true} placeholder={'受监护人的11位监护代码'} onChangeText={(e) => {
+                <TextInput editable={true} keyboardType={'numeric'} maxLength={11} placeholder={'受监护人的11位监护代码'} onChangeText={(e) => {
                     this.setState({
                         protectCode: e
                     })
                 }} />
                 <Text style={{fontSize: 20}}>请输入您的手机号：</Text>
-                <TextInput editable={true} placeholder={'受监护人指定的应急联系人手机号'} onChangeText={(e) => {
+                <TextInput editable={true} keyboardType={'numeric'} maxLength={11} placeholder={'受监护人指定的应急联系人手机号'} onChangeText={(e) => {
                     this.setState({
                         phoneNumber: e
                     })
@@ -82,8 +82,7 @@ export default class LoginScene extends Component {
                 >
                     确认
                 </Button>
-                <Text>{this.state.protectCode}</Text>
-                <Text>{this.state.phoneNumber}</Text>
+
                 <Text>{this.state.returnValue}</Text>
             </View>
         );
